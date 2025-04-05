@@ -34,7 +34,7 @@ class GNNLayer(torch.nn.Module):
         super().__init__()
         
         # bias를 포함하지 않는 basic linear transformation
-        self.linear = Linear(dim_in, dim_out, bias=False)
+        self.linear = nn.Linear(dim_in, dim_out, bias=False)
  
     def forward(self, x, adjacency):
         
@@ -44,6 +44,7 @@ class GNNLayer(torch.nn.Module):
         # (2) Multiplication with the adjacency matrix A
         x = torch.sparse.mm(adjacency, x)
         return x
+#여기서 입맛에 맟춰서 코딩하면됨
 # 입력 데이터 예시
 input_tensor = torch.randn(1, 1, 35, 2048)
 
