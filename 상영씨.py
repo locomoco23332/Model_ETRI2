@@ -29,7 +29,21 @@ class CNNNet(nn.Module):
         x = self.conv_layers(x)
         x = self.final_conv(x)
         return x
-
+class GNNLayer(torch.nn.Module):
+    def __init__(self, dim_in, dim_out):
+        super().__init__()
+        
+        # bias를 포함하지 않는 basic linear transformation
+        self.linear = Linear(dim_in, dim_out, bias=False)
+ 
+    def forward(self, x, adjacency):
+        
+        # (1) Linear trasnformation
+        x = self.linear(x)
+        
+        # (2) Multiplication with the adjacency matrix A
+        x = torch.sparse.mm(adjacency, x)
+        return x
 # 입력 데이터 예시
 input_tensor = torch.randn(1, 1, 35, 2048)
 
