@@ -51,7 +51,16 @@ input_tensor = torch.randn(1, 1, 35, 2048)
 # 모델 생성 및 실행
 model = CNNNet()
 output = model(input_tensor)
+conv = nn.Conv2d(
+    in_channels=1,
+    out_channels=1,
+    kernel_size=(35, 3),
+    stride=(58, 3),
+    padding=(0, 0)
+)
+
 output=output.permute(3,2,1,0)
+#or output=output.unsqueeze(0) output=output.unsqueeze(0) output=conv(output) output=output.squeeze(0),output=output.squeeze(0)
 
 output=output.squeeze(-1)
 output=output.squeeze(-1)
