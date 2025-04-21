@@ -66,3 +66,7 @@ output=output.squeeze(-1)
 output=output.squeeze(-1)
 print("입력 shape:", input_tensor.shape)
 print("출력 shape:", output.shape)
+
+model2=GNNLayer(input,output)
+
+model2(input_data,output)
